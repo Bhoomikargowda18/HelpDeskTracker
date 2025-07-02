@@ -32,18 +32,22 @@ function AppLayout({ children, pathname }: { children: React.ReactNode; pathname
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-200">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       
-      <div className="lg:ml-64">
+      <div className="lg:ml-64 flex flex-col min-h-screen">
         <Topbar 
           title={getPageTitle(pathname)}
           onMenuClick={() => setSidebarOpen(true)}
         />
         
-        <main className="p-6">
+        <main className="flex-1 p-6">
           {children}
         </main>
+        
+        <footer className="text-center py-3 text-black text-sm font-medium" style={{ backgroundColor: 'hsl(171, 60%, 55%)' }}>
+          Footer Area
+        </footer>
       </div>
     </div>
   );

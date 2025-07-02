@@ -74,50 +74,94 @@ export default function CreateTicket() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <Card>
-        <CardContent className="p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">Create New Ticket</h2>
-          
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+    <div className="max-w-4xl mx-auto">
+      <div className="bg-white rounded-lg shadow-md border-2 border-blue-400 p-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">Create New Ticket</h2>
+        
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <Label htmlFor="subject">Subject</Label>
+              <Label htmlFor="ticketNo" className="text-gray-700 font-medium">Ticket No.</Label>
               <Input
-                id="subject"
-                {...form.register("subject")}
-                placeholder="Enter ticket subject"
-                className="mt-1"
+                id="ticketNo"
+                value="Auto-generated"
+                disabled
+                className="mt-1 bg-gray-200 text-gray-500"
               />
-              {form.formState.errors.subject && (
-                <p className="text-sm text-red-600 mt-1">
-                  {form.formState.errors.subject.message}
-                </p>
-              )}
             </div>
-
             <div>
-              <Label htmlFor="description">Description</Label>
-              <Textarea
-                id="description"
-                {...form.register("description")}
-                rows={5}
-                placeholder="Describe the issue in detail..."
-                className="mt-1 resize-vertical"
+              <Label htmlFor="date" className="text-gray-700 font-medium">Date:</Label>
+              <Input
+                id="date"
+                value={new Date().toLocaleDateString()}
+                disabled
+                className="mt-1 bg-gray-200 text-gray-500"
               />
-              {form.formState.errors.description && (
-                <p className="text-sm text-red-600 mt-1">
-                  {form.formState.errors.description.message}
-                </p>
-              )}
             </div>
-
             <div>
-              <Label htmlFor="priority">Priority</Label>
+              <Label htmlFor="name" className="text-gray-700 font-medium">Name:</Label>
+              <Input
+                id="name"
+                value={user?.name || ""}
+                disabled
+                className="mt-1 bg-gray-200 text-gray-500"
+              />
+            </div>
+            <div>
+              <Label htmlFor="department" className="text-gray-700 font-medium">Department:</Label>
+              <Input
+                id="department"
+                value="Support"
+                disabled
+                className="mt-1 bg-gray-200 text-gray-500"
+              />
+            </div>
+          </div>
+
+          <div>
+            <Label htmlFor="subject" className="text-gray-700 font-medium">Subject:</Label>
+            <Input
+              id="subject"
+              {...form.register("subject")}
+              placeholder=""
+              className="mt-1 bg-gray-200"
+            />
+            {form.formState.errors.subject && (
+              <p className="text-sm text-red-600 mt-1">
+                {form.formState.errors.subject.message}
+              </p>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <Label htmlFor="category" className="text-gray-700 font-medium">Category:</Label>
+              <Input
+                id="category"
+                value="General"
+                disabled
+                className="mt-1 bg-gray-200 text-gray-500"
+              />
+            </div>
+            <div>
+              <Label htmlFor="type" className="text-gray-700 font-medium">Type:</Label>
+              <Input
+                id="type"
+                value="Support Request"
+                disabled
+                className="mt-1 bg-gray-200 text-gray-500"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <Label htmlFor="priority" className="text-gray-700 font-medium">Priority:</Label>
               <Select
                 value={form.watch("priority")}
                 onValueChange={(value) => form.setValue("priority", value as "low" | "medium" | "high")}
               >
-                <SelectTrigger className="mt-1">
+                <SelectTrigger className="mt-1 bg-gray-200">
                   <SelectValue placeholder="Select priority" />
                 </SelectTrigger>
                 <SelectContent>
@@ -132,25 +176,35 @@ export default function CreateTicket() {
                 </p>
               )}
             </div>
-
-            <div className="flex justify-end space-x-4">
-              <Button 
-                type="button" 
-                variant="outline"
-                onClick={() => setLocation("/dashboard")}
-              >
-                Cancel
-              </Button>
-              <Button 
-                type="submit"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Creating..." : "Create Ticket"}
-              </Button>
+            <div>
+              <Label htmlFor="description" className="text-gray-700 font-medium">Description:</Label>
+              <Textarea
+                id="description"
+                {...form.register("description")}
+                rows={5}
+                placeholder=""
+                className="mt-1 bg-gray-200 resize-vertical"
+              />
+              {form.formState.errors.description && (
+                <p className="text-sm text-red-600 mt-1">
+                  {form.formState.errors.description.message}
+                </p>
+              )}
             </div>
-          </form>
-        </CardContent>
-      </Card>
+          </div>
+
+          <div className="flex justify-end">
+            <Button 
+              type="submit"
+              disabled={isSubmitting}
+              className="px-8 py-2 text-white font-medium rounded"
+              style={{ backgroundColor: 'hsl(171, 60%, 55%)' }}
+            >
+              {isSubmitting ? "Creating..." : "Submit"}
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

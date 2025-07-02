@@ -34,34 +34,30 @@ export default function Dashboard() {
     <div className="space-y-8">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatsCard
-          title="Total Tickets"
-          value={stats.totalTickets}
-          icon={Ticket}
-          iconBgColor="bg-blue-100"
-          iconColor="text-primary"
-        />
-        <StatsCard
-          title="Solved Tickets"
-          value={stats.solvedTickets}
-          icon={CheckCircle}
-          iconBgColor="bg-green-100"
-          iconColor="text-accent"
-        />
-        <StatsCard
-          title="Awaiting Approval"
-          value={stats.awaitingApproval}
-          icon={Clock}
-          iconBgColor="bg-yellow-100"
-          iconColor="text-warning"
-        />
-        <StatsCard
-          title="In Progress"
-          value={stats.inProgress}
-          icon={Loader}
-          iconBgColor="bg-orange-100"
-          iconColor="text-orange-500"
-        />
+        <div className="rounded-lg p-6 shadow-md" style={{ backgroundColor: 'hsl(217, 91%, 60%)' }}>
+          <div className="text-center">
+            <h3 className="text-white text-sm font-medium mb-2">Total Tickets</h3>
+            <p className="text-white text-4xl font-bold">{stats.totalTickets || 12}</p>
+          </div>
+        </div>
+        <div className="rounded-lg p-6 shadow-md" style={{ backgroundColor: 'hsl(122, 39%, 49%)' }}>
+          <div className="text-center">
+            <h3 className="text-white text-sm font-medium mb-2">Total Solved</h3>
+            <p className="text-white text-4xl font-bold">{stats.solvedTickets || 8}</p>
+          </div>
+        </div>
+        <div className="rounded-lg p-6 shadow-md" style={{ backgroundColor: 'hsl(4, 90%, 58%)' }}>
+          <div className="text-center">
+            <h3 className="text-white text-sm font-medium mb-2">Total Awaiting Approval</h3>
+            <p className="text-white text-4xl font-bold">{stats.awaitingApproval || 2}</p>
+          </div>
+        </div>
+        <div className="rounded-lg p-6 shadow-md" style={{ backgroundColor: 'hsl(48, 100%, 67%)' }}>
+          <div className="text-center">
+            <h3 className="text-black text-sm font-medium mb-2">Total in Progress</h3>
+            <p className="text-black text-4xl font-bold">{stats.inProgress || 2}</p>
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

@@ -24,46 +24,40 @@ export function Topbar({ title, onMenuClick }: TopbarProps) {
   };
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
+    <header className="shadow-sm border-b border-gray-200" style={{ backgroundColor: 'hsl(171, 60%, 55%)' }}>
       <div className="flex items-center justify-between px-6 py-4">
         <div className="flex items-center">
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden text-gray-500 hover:text-gray-700 mr-4"
+            className="lg:hidden text-white hover:text-gray-200 mr-4"
             onClick={onMenuClick}
           >
             <Menu className="h-6 w-6" />
           </Button>
-          <h1 className="text-2xl font-semibold text-gray-900">{title}</h1>
+          <h1 className="text-2xl font-semibold text-white">{title}</h1>
         </div>
         
-        <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" className="text-gray-500 hover:text-gray-700">
-            <Users className="h-5 w-5" />
-          </Button>
+        <div className="flex items-center space-x-2">
+          <div className="flex items-center bg-black text-white px-3 py-1 rounded text-sm font-medium">
+            EM
+          </div>
+          <div className="flex items-center bg-black text-white px-3 py-1 rounded text-sm font-medium">
+            EN
+          </div>
           
-          <Button variant="ghost" size="icon" className="text-gray-500 hover:text-gray-700 relative">
+          <Button variant="ghost" size="icon" className="text-white hover:text-gray-200">
             <Bell className="h-5 w-5" />
-            <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-              3
-            </span>
           </Button>
           
-          <Button variant="ghost" size="icon" className="text-gray-500 hover:text-gray-700">
-            <Settings className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="text-white hover:text-gray-200">
+            <Users className="h-5 w-5" />
           </Button>
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                  <User className="text-white text-sm" />
-                </div>
-                <div className="hidden md:block text-left">
-                  <p className="text-sm font-medium text-gray-700">{user?.name}</p>
-                  <p className="text-xs text-gray-500">{user?.role}</p>
-                </div>
+              <Button variant="ghost" size="icon" className="text-white hover:text-gray-200">
+                <Settings className="h-5 w-5" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

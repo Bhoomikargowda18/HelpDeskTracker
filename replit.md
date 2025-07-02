@@ -104,6 +104,15 @@ This is a full-stack helpdesk ticketing system built with React on the frontend 
 ```
 Changelog:
 - July 02, 2025. Initial setup
+- July 02, 2025. Updated UI to match turquoise/teal color palette:
+  • Changed login page background to turquoise with gray card design
+  • Updated sidebar to gray with turquoise header and active states
+  • Modified topbar to turquoise background with white text and icons
+  • Redesigned dashboard stats cards with blue, green, red, and yellow colors
+  • Enhanced create ticket form to match multi-column layout design
+  • Updated ticket list page with search functionality and better table design
+  • Added footer area with turquoise background
+  • Changed main background to light gray
 ```
 
 ## User Preferences

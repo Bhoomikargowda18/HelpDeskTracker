@@ -46,58 +46,53 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="max-w-md w-full space-y-8 p-8">
-        <div className="text-center">
-          <div className="mx-auto h-16 w-16 bg-primary rounded-full flex items-center justify-center mb-4">
-            <Headphones className="text-white text-2xl" />
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'hsl(171, 60%, 55%)' }}>
+      <div className="w-full max-w-md mx-auto">
+        <div className="bg-gray-200 rounded-lg p-8 shadow-lg">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-black italic">Helpdesk System</h2>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Helpdesk System</h2>
-          <p className="mt-2 text-sm text-gray-600">Sign in to your account</p>
+          
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Username"
+                className="w-full px-4 py-3 border border-gray-400 rounded bg-white"
+              />
+            </div>
+            <div>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="w-full px-4 py-3 border border-gray-400 rounded bg-white"
+              />
+            </div>
+            
+            <Button 
+              type="submit" 
+              className="w-full py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded"
+              disabled={isLoading}
+            >
+              {isLoading ? "Signing in..." : "Sign In"}
+            </Button>
+          </form>
+          
+          <div className="flex justify-between mt-4 text-sm">
+            <a href="#" className="text-red-500 hover:underline">Forgot password</a>
+            <a href="#" className="text-gray-700 hover:underline">Sign Up</a>
+          </div>
         </div>
-        
-        <Card>
-          <CardContent className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="email">Email address</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="mt-1"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter your password"
-                    className="mt-1"
-                  />
-                </div>
-              </div>
-              
-              <Button 
-                type="submit" 
-                className="w-full"
-                disabled={isLoading}
-              >
-                {isLoading ? "Signing in..." : "Sign in"}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );

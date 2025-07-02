@@ -36,18 +36,17 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       
       {/* Sidebar */}
       <div className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-200 ease-in-out lg:translate-x-0",
+        "fixed inset-y-0 left-0 z-50 w-64 bg-gray-300 shadow-lg transform transition-transform duration-200 ease-in-out lg:translate-x-0",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
-        <div className="flex items-center justify-center h-16 px-4 bg-primary">
+        <div className="flex items-center justify-start h-16 px-4" style={{ backgroundColor: 'hsl(171, 60%, 55%)' }}>
           <div className="flex items-center">
-            <Headphones className="text-white text-xl mr-2" />
-            <span className="text-white text-lg font-semibold">Helpdesk</span>
+            <span className="text-white text-xl font-bold italic">Helpdesk</span>
           </div>
         </div>
         
-        <nav className="mt-8">
-          <div className="px-4 space-y-2">
+        <nav className="mt-0">
+          <div className="space-y-0">
             {navigation.map((item) => {
               const isActive = location === item.href;
               return (
@@ -55,12 +54,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "flex items-center px-4 py-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors duration-150",
-                    isActive && "bg-blue-50 text-primary"
+                    "flex items-center px-4 py-3 text-black border-b border-gray-400 hover:bg-gray-200 transition-colors duration-150",
+                    isActive && "bg-gray-200 border-l-4 border-l-gray-700"
                   )}
                   onClick={() => onClose()}
                 >
-                  <item.icon className="mr-3 h-5 w-5 text-gray-500" />
+                  <item.icon className="mr-3 h-5 w-5 text-black" />
                   {item.name}
                 </Link>
               );
