@@ -4,15 +4,26 @@ import {
   CheckCircle, 
   Ticket, 
   BarChart3,
-  Headphones
+  Database,
+  Settings,
+  FileText,
+  User
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { authService } from "@/lib/auth";
 
-const navigation = [
+const regularNavigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
   { name: 'Ticket Approval', href: '/ticket-approval', icon: CheckCircle },
   { name: 'My Tickets', href: '/my-tickets', icon: Ticket },
   { name: 'Performance', href: '/performance', icon: BarChart3 },
+];
+
+const adminNavigation = [
+  { name: 'Dashboard', href: '/dashboard', icon: Home },
+  { name: 'Database', href: '/admin/database', icon: Database },
+  { name: 'Setting', href: '/admin/settings', icon: Settings },
+  { name: 'User Log History', href: '/admin/user-logs', icon: FileText },
 ];
 
 interface SidebarProps {
@@ -47,7 +58,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         
         <nav className="mt-0">
           <div className="space-y-0">
-            {navigation.map((item) => {
+            {(authService.isAdmin() ? adminNavigation : regularNavigation).map((item) => {
               const isActive = location === item.href;
               return (
                 <Link
@@ -64,6 +75,22 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </Link>
               );
             })}
+            
+            {authService.isAdmin() && (
+              <div className="mt-4 border-t border-gray-400 pt-4">
+                <Link
+                  href="/admin/profile"
+                  className={cn(
+                    "flex items-center px-4 py-3 text-black border-b border-gray-400 hover:bg-gray-200 transition-colors duration-150",
+                    location === "/admin/profile" && "bg-gray-200 border-l-4 border-l-gray-700"
+                  )}
+                  onClick={() => onClose()}
+                >
+                  <User className="mr-3 h-5 w-5 text-black" />
+                  User Profile
+                </Link>
+              </div>
+            )}
           </div>
         </nav>
       </div>

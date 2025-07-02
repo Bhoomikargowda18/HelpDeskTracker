@@ -22,9 +22,13 @@ export default function MyTickets() {
   const user = authService.getCurrentUser();
 
   useEffect(() => {
-    if (user) {
-      setTickets(ticketsService.getUserTickets(user.email));
-    }
+    const loadUserTickets = async () => {
+      if (user) {
+        const userTickets = await ticketsService.getUserTickets(user.email);
+        setTickets(userTickets);
+      }
+    };
+    loadUserTickets();
   }, [user]);
 
   const getPriorityVariant = (priority: string) => {

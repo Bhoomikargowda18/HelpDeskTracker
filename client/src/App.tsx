@@ -15,6 +15,10 @@ import CreateTicket from "@/pages/create-ticket";
 import MyTickets from "@/pages/my-tickets";
 import TicketApproval from "@/pages/ticket-approval";
 import Performance from "@/pages/performance";
+import AdminDatabase from "@/pages/admin-database";
+import AdminSettings from "@/pages/admin-settings";
+import AdminUserLogs from "@/pages/admin-user-logs";
+import AdminProfile from "@/pages/admin-profile";
 import NotFound from "@/pages/not-found";
 
 const getPageTitle = (pathname: string): string => {
@@ -24,6 +28,10 @@ const getPageTitle = (pathname: string): string => {
     '/my-tickets': 'My Tickets',
     '/ticket-approval': 'Ticket Approval',
     '/performance': 'Performance',
+    '/admin/database': 'Admin - Database',
+    '/admin/settings': 'Admin - Setting',
+    '/admin/user-logs': 'Admin - User Log History',
+    '/admin/profile': 'Admin - Profile Setting',
   };
   return titles[pathname] || 'Dashboard';
 };
@@ -103,6 +111,46 @@ function Router() {
           <ProtectedRoute>
             <AppLayout pathname="/performance">
               <Performance />
+            </AppLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      
+      <Route path="/admin/database">
+        {(params) => (
+          <ProtectedRoute>
+            <AppLayout pathname="/admin/database">
+              <AdminDatabase />
+            </AppLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      
+      <Route path="/admin/settings">
+        {(params) => (
+          <ProtectedRoute>
+            <AppLayout pathname="/admin/settings">
+              <AdminSettings />
+            </AppLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      
+      <Route path="/admin/user-logs">
+        {(params) => (
+          <ProtectedRoute>
+            <AppLayout pathname="/admin/user-logs">
+              <AdminUserLogs />
+            </AppLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      
+      <Route path="/admin/profile">
+        {(params) => (
+          <ProtectedRoute>
+            <AppLayout pathname="/admin/profile">
+              <AdminProfile />
             </AppLayout>
           </ProtectedRoute>
         )}

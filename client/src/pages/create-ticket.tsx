@@ -54,14 +54,21 @@ export default function CreateTicket() {
         createdBy: user.email,
       };
       
-      ticketsService.createTicket(ticketData);
+      const createdTicket = await ticketsService.createTicket(ticketData);
       
-      toast({
-        title: "Success",
-        description: "Ticket created successfully!",
-      });
-      
-      setLocation("/my-tickets");
+      if (createdTicket) {
+        toast({
+          title: "Success",
+          description: "Ticket created successfully!",
+        });
+        setLocation("/my-tickets");
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to create ticket. Please try again.",
+          variant: "destructive",
+        });
+      }
     } catch (error) {
       toast({
         title: "Error",

@@ -27,7 +27,11 @@ export default function Dashboard() {
   });
 
   useEffect(() => {
-    setStats(ticketsService.getStats());
+    const loadStats = async () => {
+      const statsData = await ticketsService.getStats();
+      setStats(statsData);
+    };
+    loadStats();
   }, []);
 
   return (
